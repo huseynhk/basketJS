@@ -62,7 +62,7 @@ if (localStorage.getItem("basket") != null) {
                 tdcount.prepend(btnminus);
                 tdsubtotal.innerText = product.count * product.price;
 
-                sumTotalPrice += parseFloat(product.price);
+                sumTotalPrice = sumTotalPrice + parseFloat(product.price);
                 totalPrice.innerText = sumTotalPrice;
 
                 localStorage.setItem("basket", JSON.stringify(arr));
@@ -77,7 +77,7 @@ if (localStorage.getItem("basket") != null) {
             tr.append(tdimage, tdname, tdprice, tdcount, tdsubtotal, remove);
 
             btnremove.onclick = function () {
-                sumTotalPrice -= product.count * product.price; 
+                sumTotalPrice = sumTotalPrice - product.count * product.price; 
                 product.count=0;
                                
                 totalPrice.innerText = sumTotalPrice;
@@ -88,7 +88,7 @@ if (localStorage.getItem("basket") != null) {
 
             table.lastElementChild.append(tr);
 
-            sumTotalPrice += product.count * product.price;
+            sumTotalPrice = sumTotalPrice + product.count * product.price;
             totalPrice.innerText = sumTotalPrice;
             localStorage.setItem("basket", JSON.stringify(arr));
             WriteProductCount();
@@ -101,7 +101,7 @@ function WriteProductCount() {
         let totalCount = 0;        
 
         arr.map(product => {
-            totalCount += product.count;
+            totalCount =  totalCount + product.count;
         })
         productCount.innerText = totalCount;
 
